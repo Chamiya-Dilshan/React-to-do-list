@@ -106,4 +106,4 @@ export default function TodoItem({ task, onDelete, onToggleCompleted, onTogglePi
       </TouchableOpacity>
     </View>
   );
-}
+} 

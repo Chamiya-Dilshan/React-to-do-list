@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, FlatList, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { View, Text, FlatList, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, Alert } from 'react-native';
 import TodoItem from './TodoItem';
 
 const styles = StyleSheet.create({
@@ -41,29 +41,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
-  },
-  pinnedButtonContainer: {
-    marginBottom: 20,
-    alignItems: 'center',
-  },
-  pinnedButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 8,
-    backgroundColor: '#4CAF50',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  pinnedButtonText: {
-    color: '#fff',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  todoList: {
-    marginBottom: 20,
-  },
-  completedSection: {
-    marginTop: 20,
   },
   sectionHeader: {
     fontSize: 20,
@@ -164,74 +141,92 @@ export default function TodoList({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <Text style={styles.header}>Appointment Manager</Text>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.textInput}
-            value={text}
-            onChangeText={setText}
-            placeholder="New Task"
-            placeholderTextColor="#999"
-          />
-          <TouchableOpacity style={styles.addButton} onPress={addTask}>
-            <Text style={styles.addButtonText}>Add</Text>
-          </TouchableOpacity>
-        </View>
-        {pinnedTasks.length > 0 && (
-          <View style={styles.todoList}>
-            <Text style={styles.sectionHeader}>Pinned Tasks</Text>
-            {pinnedTasks.map(task => (
-              <TodoItem
-                key={task.id}
-                task={task}
-                onDelete={deleteTask}
-                onToggleCompleted={toggleCompleted}
-                onTogglePinned={togglePinned}
-                onEdit={updateTask}
-              />
-            ))}
-          </View>
-        )}
-        <View style={styles.todoList}>
-          <Text style={styles.sectionHeader}>Todo</Text>
-          <FlatList
-            data={incompleteTasks}
-            renderItem={({ item }) => (
-              <TodoItem
-                key={item.id}
-                task={item}
-                onDelete={deleteTask}
-                onToggleCompleted={toggleCompleted}
-                onTogglePinned={togglePinned}
-                onEdit={updateTask}
-              />
-            )}
-            keyExtractor={item => item.id.toString()}
-          />
-        </View>
-        {completedTasks.length > 0 && (
-          <View style={styles.completedSection}>
-            <Text style={styles.sectionHeader}>Completed Tasks</Text>
-            {completedTasks.map(task => (
-              <TodoItem
-                key={task.id}
-                task={task}
-                onDelete={deleteTask}
-                onToggleCompleted={toggleCompleted}
-              />
-            ))}
-          </View>
-        )}
-      </ScrollView>
-      <View style={styles.footer}>
-        <TouchableOpacity style={styles.clearButton} onPress={clearAllTasks}>
-          <Text style={styles.clearButtonText}>Clear All</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.undoButton} onPress={undoClear}>
-          <Text style={styles.undoButtonText}>Undo</Text>
+      <Text style={styles.header}>Appointment Manager</Text>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.textInput}
+          value={text}
+          onChangeText={setText}
+          placeholder="New Task"
+          placeholderTextColor="#999"
+        />
+        <TouchableOpacity style={styles.addButton} onPress={addTask}>
+          <Text style={styles.addButtonText}>Add</Text>
         </TouchableOpacity>
       </View>
+
+      <FlatList
+        ListHeaderComponent={
+          <>
+            {pinnedTasks.length > 0 && (
+              <View style={{ marginBottom: 20 }}>
+                <Text style={styles.sectionHeader}>Pinned Tasks</Text>
+                <FlatList
+                  data={pinnedTasks}
+                  renderItem={({ item }) => (
+                    <TodoItem
+                      key={item.id}
+                      task={item}
+                      onDelete={deleteTask}
+                      onToggleCompleted={toggleCompleted}
+                      onTogglePinned={togglePinned}
+                      onEdit={updateTask}
+                    />
+                  )}
+                  keyExtractor={item => item.id.toString()}
+                />
+              </View>
+            )}
+
+            <View style={{ marginBottom: 20 }}>
+              <Text style={styles.sectionHeader}>Todo</Text>
+              <FlatList
+                data={incompleteTasks}
+                renderItem={({ item }) => (
+                  <TodoItem
+                    key={item.id}
+                    task={item}
+                    onDelete={deleteTask}
+                    onToggleCompleted={toggleCompleted}
+                    onTogglePinned={togglePinned}
+                    onEdit={updateTask}
+                  />
+                )}
+                keyExtractor={item => item.id.toString()}
+              />
+            </View>
+
+            {completedTasks.length > 0 && (
+              <View style={{ marginBottom: 20 }}>
+                <Text style={styles.sectionHeader}>Completed Tasks</Text>
+                <FlatList
+                  data={completedTasks}
+                  renderItem={({ item }) => (
+                    <TodoItem
+                      key={item.id}
+                      task={item}
+                      onDelete={deleteTask}
+                      onToggleCompleted={toggleCompleted}
+                    />
+                  )}
+                  keyExtractor={item => item.id.toString()}
+                />
+              </View>
+            )}
+          </>
+        }
+        ListFooterComponent={
+          <View style={styles.footer}>
+            <TouchableOpacity style={styles.clearButton} onPress={clearAllTasks}>
+              <Text style={styles.clearButtonText}>Clear All</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.undoButton} onPress={undoClear}>
+              <Text style={styles.undoButtonText}>Undo</Text>
+            </TouchableOpacity>
+          </View>
+        }
+        contentContainerStyle={{ flexGrow: 1 }}
+      />
     </SafeAreaView>
   );
 }
