@@ -1,4 +1,4 @@
-// components/LoginPage.js
+// components/SignUpPage.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
@@ -39,28 +39,29 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  signupText: {
-    color: '#4CAF50',
-    textAlign: 'center',
-    fontSize: 16,
-  },
 });
 
-export default function LoginPage({ navigation }) {
+export default function SignUpPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleLogin = () => {
-    if (username.trim() === '' || password.trim() === '') {
-      Alert.alert('Error', 'Please enter both username and password.');
+  const handleSignUp = () => {
+    if (username.trim() === '' || password.trim() === '' || confirmPassword.trim() === '') {
+      Alert.alert('Error', 'Please fill in all fields.');
       return;
     }
-    navigation.navigate('TodoList');
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match.');
+      return;
+    }
+    // Perform sign-up logic here
+    Alert.alert('Success', 'Account created successfully!');
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Login</Text>
+      <Text style={styles.header}>Sign Up</Text>
       <TextInput
         style={styles.input}
         value={username}
@@ -77,11 +78,16 @@ export default function LoginPage({ navigation }) {
         placeholderTextColor="#999"
         secureTextEntry
       />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('SignUpPage')}>
-        <Text style={styles.signupText}>Don't have an account? Sign Up</Text>
+      <TextInput
+        style={styles.input}
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+        placeholder="Confirm Password"
+        placeholderTextColor="#999"
+        secureTextEntry
+      />
+      <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+        <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
     </View>
   );
