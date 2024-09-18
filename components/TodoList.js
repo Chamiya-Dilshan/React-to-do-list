@@ -1,3 +1,4 @@
+//TodoList.js
 import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, Alert } from 'react-native';
 import TodoItem from './TodoItem';
@@ -103,7 +104,7 @@ export default function TodoList({ navigation }) {
     setTasks(prevTasks =>
       prevTasks.map(task =>
         task.id === id
-          ? { ...task, completed: !task.completed, pinned: false } // Unpin the task when marking as completed
+          ? { ...task, completed: !task.completed, pinned: false } 
           : task
       )
     );
@@ -122,7 +123,7 @@ export default function TodoList({ navigation }) {
   }
 
   function clearAllTasks() {
-    setDeletedTasks(tasks);  // Save the current tasks to undo if needed
+    setDeletedTasks(tasks); 
     setTasks([]);
   }
 

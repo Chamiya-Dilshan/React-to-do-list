@@ -1,4 +1,4 @@
-// components/SignUpPage.js
+//SignUpPage.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
@@ -55,7 +55,6 @@ export default function SignUpPage() {
       Alert.alert('Error', 'Passwords do not match.');
       return;
     }
-    // Perform sign-up logic here
     Alert.alert('Success', 'Account created successfully!');
   };
 

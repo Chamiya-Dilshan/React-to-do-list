@@ -1,4 +1,4 @@
-// components/LoginPage.js
+//LoginPage.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 

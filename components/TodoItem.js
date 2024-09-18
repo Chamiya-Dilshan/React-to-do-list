@@ -1,6 +1,7 @@
+//TodoItem.js
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, Alert } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';  // Icon library for buttons
+import { Ionicons } from '@expo/vector-icons';  
 
 const styles = StyleSheet.create({
   container: {
@@ -72,8 +73,7 @@ export default function TodoItem({ task, onDelete, onToggleCompleted, onTogglePi
           {task.text}
         </Text>
       )}
-      
-      {/* Complete/Undo Button */}
+
       <TouchableOpacity onPress={() => onToggleCompleted(task.id)} style={styles.iconButton}>
         <Ionicons
           name={task.completed ? 'checkmark-circle' : 'checkmark-circle-outline'}
@@ -82,14 +82,12 @@ export default function TodoItem({ task, onDelete, onToggleCompleted, onTogglePi
         />
       </TouchableOpacity>
 
-      {/* Edit Button */}
       {!task.completed && (
         <TouchableOpacity onPress={() => setIsEditing(!isEditing)} style={styles.iconButton}>
           <Ionicons name="create-outline" size={24} color="#4CAF50" />
         </TouchableOpacity>
       )}
 
-      {/* Pin/Unpin Button */}
       {!task.completed && (
         <TouchableOpacity onPress={() => onTogglePinned(task.id)} style={styles.iconButton}>
           <Ionicons
@@ -100,10 +98,9 @@ export default function TodoItem({ task, onDelete, onToggleCompleted, onTogglePi
         </TouchableOpacity>
       )}
 
-      {/* Delete Button */}
       <TouchableOpacity onPress={() => onDelete(task.id)} style={styles.iconButton}>
         <Ionicons name="trash-outline" size={24} color="#f44336" />
       </TouchableOpacity>
     </View>
   );
-} 
+}

@@ -1,3 +1,4 @@
+//InputSection.js
 import React from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
@@ -50,16 +51,11 @@ const styles = StyleSheet.create({
 
 export default function InputSection({ text, setText, addTask }) {
     function handleAddTask() {
-        if (text.trim()) {
-            try {
-                addTask();
-            } catch (error) {
-                console.error("Failed to add task:", error);
-                // Optionally show user feedback here
-            }
-        } else {
-            // Show user feedback that the task text cannot be empty
-        }
+        if (!text.trim()) {
+            Alert.alert('Error', 'Task text cannot be empty');
+         } else {
+            addTask();
+         }         
     }
 
     return (
@@ -77,4 +73,3 @@ export default function InputSection({ text, setText, addTask }) {
         </View>
     );
 }
-
