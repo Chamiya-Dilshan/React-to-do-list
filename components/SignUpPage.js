@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center', // Centers the inner container horizontally
+    alignItems: 'center', 
     backgroundColor: '#ffffff',
   },
   innerContainer: {
@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 5 },
-    elevation: 5,  // For Android shadow effect
-    alignItems: 'center', // Centers content inside the inner container
+    elevation: 5,  
+    alignItems: 'center', 
   },
   header: {
     fontSize: 28,
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   input: {
-    width: '100%',  // Inputs stretch to full width of inner container
+    width: '100%',
     fontSize: 16,
     padding: 10,
     marginBottom: 20,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   button: {
-    width: '100%',  // Button should stretch to full width of inner container
+    width: '100%',
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 8,
@@ -77,7 +77,7 @@ export default function SignUpPage({ navigation }) {
     Alert.alert('Success', 'Account created successfully!', [
       {
         text: 'OK',
-        onPress: () => navigation.navigate('LoginPage'), // Navigate back to LoginPage
+        onPress: () => navigation.navigate('LoginPage'), 
       },
     ]);
   };
