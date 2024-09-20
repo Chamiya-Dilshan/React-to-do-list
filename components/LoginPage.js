@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff', // Set a plain background color
+    backgroundColor: '#fff', 
   },
   innerContainer: {
     width: width * 0.8,
@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 5 },
-    elevation: 5,  // For Android shadow effect
-    alignItems: 'center', // Centers content inside the inner container
+    elevation: 5,
+    alignItems: 'center',
   },
   header: {
     fontSize: 28,
